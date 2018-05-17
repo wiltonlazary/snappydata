@@ -1,0 +1,25 @@
+stage "preparation"
+
+node {
+   parallel (
+     phase1: { sh "./jenkin/source-update.sh" },
+   )
+  sh "echo 42 > data"
+  stash includes: '*', name: 'binary'
+   
+}
+
+stage "do the build"
+
+parallel (
+    "stream 1": { 
+                     node('master') { 
+			   sh "touch nodeOneTxt"
+                       } 
+                   },
+    "stream 2": { 
+                     node('slave-machine') { 
+			   sh "touch nodeTwoTxt"
+                       } 
+                   }
+)
