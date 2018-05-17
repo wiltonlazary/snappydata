@@ -1,19 +1,18 @@
 stage "Initializing/Cloning repositories."
 
 node {
-	stage "checkout snappydata" {
-		checkout([
-			$class: 'GitSCM',
-			branches: [[name: 'feature/jenkins-ci']],
-			doGenerateSubmoduleConfigurations: false,
-			extensions: [],
-			submoduleCfg: [],
-			userRemoteConfigs: [
-				[credentialsId: 'c6aa6881-51ea-448f-8770-6eb57bf0d223',
-				url: 'https://github.com/SnappyDataInc/snappydata.git']
-			]
-		])
-	}
+	stage "checkout snappydata"
+	checkout([
+		$class: 'GitSCM',
+		branches: [[name: 'feature/jenkins-ci']],
+		doGenerateSubmoduleConfigurations: false,
+		extensions: [],
+		submoduleCfg: [],
+		userRemoteConfigs: [
+			[credentialsId: 'c6aa6881-51ea-448f-8770-6eb57bf0d223',
+			url: 'https://github.com/SnappyDataInc/snappydata.git']
+		]
+	])
 	
 	parallel (
 		"checkout spark": {
