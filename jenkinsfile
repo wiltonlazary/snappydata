@@ -30,7 +30,7 @@ node {
 					]
 				])
 			}
-		}
+		},
 
 		"checkout snappy-connectors": {
 			dir('snappy-connectors') {
@@ -46,7 +46,7 @@ node {
 					]
 				])
 			}
-		}
+		},
 
 		"checkout aqp": {
 			dir('aqp') {
@@ -62,7 +62,7 @@ node {
 					]
 				])
 			}
-		}
+		},
 
 		"checkout spark-jobserver": {
 			dir('spark-jobserver') {
@@ -78,7 +78,7 @@ node {
 					]
 				])
 			}
-		}
+		},
 
 		"checkout snappy-store": {
 			dir('store') {
