@@ -14,7 +14,7 @@ node {
 		]
 	])
 	
-	parallel('submodule') {
+	parallel('submodule') (
 		stage 'checkout spark'
 		dir('spark') {
 			checkout([
@@ -89,5 +89,5 @@ node {
 				]
 			])
 		}
-	}
+	)
 }
