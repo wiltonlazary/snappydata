@@ -1,25 +1,14 @@
 stage "preparation"
 
 node {
-   parallel (
-     phase1: { sh "./jenkin/source-update.sh" },
-   )
-  sh "echo 42 > data"
-  stash includes: '*', name: 'binary'
-   
-}
 
-stage "do the build"
+	// Mark the code checkout 'stage'....
+	stage 'Stage Checkout'
 
-parallel (
-    "stream 1": { 
-                     node('master') { 
-			   sh "touch nodeOneTxt"
-                       } 
-                   },
-    "stream 2": { 
-                     node('slave-machine') { 
-			   sh "touch nodeTwoTxt"
-                       } 
-                   }
+	// Checkout code from repository and update any submodules
+	checkout scm
+	sh 'git submodule update --init'  
+
+	stage 'Stage Build'
+	./gradlew cleanAll
 )
