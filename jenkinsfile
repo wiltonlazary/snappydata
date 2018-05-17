@@ -14,80 +14,84 @@ node {
 		]
 	])
 	
-	parallel('submodule') (
-		stage 'checkout spark'
-		dir('spark') {
-			checkout([
-				$class: 'GitSCM',
-				branches: [[name: 'snappy/branch-2.1']],
-				doGenerateSubmoduleConfigurations: false,
-				extensions: [],
-				submoduleCfg: [],
-				userRemoteConfigs: [
-					[credentialsId: 'c6aa6881-51ea-448f-8770-6eb57bf0d223',
-					url: 'https://github.com/SnappyDataInc/spark.git']
-				]
-			])
+	parallel('submodule') {
+		stage('checkout spark'){
+			dir('spark') {
+				checkout([
+					$class: 'GitSCM',
+					branches: [[name: 'snappy/branch-2.1']],
+					doGenerateSubmoduleConfigurations: false,
+					extensions: [],
+					submoduleCfg: [],
+					userRemoteConfigs: [
+						[credentialsId: 'c6aa6881-51ea-448f-8770-6eb57bf0d223',
+						url: 'https://github.com/SnappyDataInc/spark.git']
+					]
+				])
+			}
 		}
 
-		stage 'checkout snappy-connectors'
-		dir('snappy-connectors') {
-			checkout([
-				$class: 'GitSCM',
-				branches: [[name: '*/master']],
-				doGenerateSubmoduleConfigurations: false,
-				extensions: [],
-				submoduleCfg: [],
-				userRemoteConfigs: [
-					[credentialsId: 'c6aa6881-51ea-448f-8770-6eb57bf0d223',
-					url: 'https://github.com/SnappyDataInc/snappy-connectors.git']
-				]
-			])
+		stage('checkout snappy-connectors'){
+			dir('snappy-connectors') {
+				checkout([
+					$class: 'GitSCM',
+					branches: [[name: '*/master']],
+					doGenerateSubmoduleConfigurations: false,
+					extensions: [],
+					submoduleCfg: [],
+					userRemoteConfigs: [
+						[credentialsId: 'c6aa6881-51ea-448f-8770-6eb57bf0d223',
+						url: 'https://github.com/SnappyDataInc/snappy-connectors.git']
+					]
+				])
+			}
 		}
 
-		stage 'checkout aqp'
-		dir('aqp') {
-			checkout([
-				$class: 'GitSCM',
-				branches: [[name: '*/master']],
-				doGenerateSubmoduleConfigurations: false,
-				extensions: [],
-				submoduleCfg: [],
-				userRemoteConfigs: [
-					[credentialsId: 'c6aa6881-51ea-448f-8770-6eb57bf0d223',
-					url: 'https://github.com/SnappyDataInc/snappy-aqp.git']
-				]
-			])
+		stage('checkout aqp'){
+			dir('aqp') {
+				checkout([
+					$class: 'GitSCM',
+					branches: [[name: '*/master']],
+					doGenerateSubmoduleConfigurations: false,
+					extensions: [],
+					submoduleCfg: [],
+					userRemoteConfigs: [
+						[credentialsId: 'c6aa6881-51ea-448f-8770-6eb57bf0d223',
+						url: 'https://github.com/SnappyDataInc/snappy-aqp.git']
+					]
+				])
+			}
 		}
 
-		stage 'checkout spark-jobserver'
-		dir('spark-jobserver') {
-			checkout([
-				$class: 'GitSCM',
-				branches: [[name: 'snappydata']],
-				doGenerateSubmoduleConfigurations: false,
-				extensions: [],
-				submoduleCfg: [],
-				userRemoteConfigs: [
-					[credentialsId: 'c6aa6881-51ea-448f-8770-6eb57bf0d223',
-					url: 'https://github.com/SnappyDataInc/spark-jobserver.git']
-				]
-			])
+		stage('checkout spark-jobserver'){
+			dir('spark-jobserver') {
+				checkout([
+					$class: 'GitSCM',
+					branches: [[name: 'snappydata']],
+					doGenerateSubmoduleConfigurations: false,
+					extensions: [],
+					submoduleCfg: [],
+					userRemoteConfigs: [
+						[credentialsId: 'c6aa6881-51ea-448f-8770-6eb57bf0d223',
+						url: 'https://github.com/SnappyDataInc/spark-jobserver.git']
+					]
+				])
+			}
 		}
 
-		stage 'checkout snappy-store'
-		dir('store') {
-			checkout([
-				$class: 'GitSCM',
-				branches: [[name: 'snappy/master']],
-				doGenerateSubmoduleConfigurations: false,
-				extensions: [],
-				submoduleCfg: [],
-				userRemoteConfigs: [
-					[credentialsId: 'c6aa6881-51ea-448f-8770-6eb57bf0d223',
-					url: 'https://github.com/SnappyDataInc/snappy-store.git']
-				]
-			])
+		stage('checkout snappy-store'){
+			dir('store') {
+				checkout([
+					$class: 'GitSCM',
+					branches: [[name: 'snappy/master']],
+					doGenerateSubmoduleConfigurations: false,
+					extensions: [],
+					submoduleCfg: [],
+					userRemoteConfigs: [
+						[credentialsId: 'c6aa6881-51ea-448f-8770-6eb57bf0d223',
+						url: 'https://github.com/SnappyDataInc/snappy-store.git']
+					]
+				])
+			}
 		}
-	)
 }
