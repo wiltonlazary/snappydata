@@ -14,78 +14,80 @@ node {
 		]
 	])
 	
-	stage 'checkout spark repo'
-	dir('spark') {
-		checkout([
-			$class: 'GitSCM',
-			branches: [[name: '*/master']],
-			doGenerateSubmoduleConfigurations: false,
-			extensions: [],
-			submoduleCfg: [],
-			userRemoteConfigs: [
-				[credentialsId: 'c6aa6881-51ea-448f-8770-6eb57bf0d223',
-				url: 'https://github.com/SnappyDataInc/spark.git']
-			]
-		])
-	}
-	
-	stage 'checkout snappy-connectors'
-	dir('snappy-connectors') {
-		checkout([
-			$class: 'GitSCM',
-			branches: [[name: '*/master']],
-			doGenerateSubmoduleConfigurations: false,
-			extensions: [],
-			submoduleCfg: [],
-			userRemoteConfigs: [
-				[credentialsId: 'c6aa6881-51ea-448f-8770-6eb57bf0d223',
-				url: 'https://github.com/SnappyDataInc/snappy-connectors.git']
-			]
-		])
-	}
-	
-	stage 'checkout aqp'
-	dir('aqp') {
-		checkout([
-			$class: 'GitSCM',
-			branches: [[name: '*/master']],
-			doGenerateSubmoduleConfigurations: false,
-			extensions: [],
-			submoduleCfg: [],
-			userRemoteConfigs: [
-				[credentialsId: 'c6aa6881-51ea-448f-8770-6eb57bf0d223',
-				url: 'https://github.com/SnappyDataInc/snappy-aqp.git']
-			]
-		])
-	}
+	parallel {
+		stage 'checkout spark repo'
+		dir('spark') {
+			checkout([
+				$class: 'GitSCM',
+				branches: [[name: '*/master']],
+				doGenerateSubmoduleConfigurations: false,
+				extensions: [],
+				submoduleCfg: [],
+				userRemoteConfigs: [
+					[credentialsId: 'c6aa6881-51ea-448f-8770-6eb57bf0d223',
+					url: 'https://github.com/SnappyDataInc/spark.git']
+				]
+			])
+		}
 
-	stage 'checkout spark-jobserver repo'
-	dir('spark-jobserver') {
-		checkout([
-			$class: 'GitSCM',
-			branches: [[name: '*/master']],
-			doGenerateSubmoduleConfigurations: false,
-			extensions: [],
-			submoduleCfg: [],
-			userRemoteConfigs: [
-				[credentialsId: 'c6aa6881-51ea-448f-8770-6eb57bf0d223',
-				url: 'https://github.com/SnappyDataInc/spark-jobserver.git']
-			]
-		])
-	}
-	
-	stage 'checkout snappy-store repo'
-	dir('store') {
-		checkout([
-			$class: 'GitSCM',
-			branches: [[name: '*/master']],
-			doGenerateSubmoduleConfigurations: false,
-			extensions: [],
-			submoduleCfg: [],
-			userRemoteConfigs: [
-				[credentialsId: 'c6aa6881-51ea-448f-8770-6eb57bf0d223',
-				url: 'https://github.com/SnappyDataInc/snappy-store.git']
-			]
-		])
+		stage 'checkout snappy-connectors'
+		dir('snappy-connectors') {
+			checkout([
+				$class: 'GitSCM',
+				branches: [[name: '*/master']],
+				doGenerateSubmoduleConfigurations: false,
+				extensions: [],
+				submoduleCfg: [],
+				userRemoteConfigs: [
+					[credentialsId: 'c6aa6881-51ea-448f-8770-6eb57bf0d223',
+					url: 'https://github.com/SnappyDataInc/snappy-connectors.git']
+				]
+			])
+		}
+
+		stage 'checkout aqp'
+		dir('aqp') {
+			checkout([
+				$class: 'GitSCM',
+				branches: [[name: '*/master']],
+				doGenerateSubmoduleConfigurations: false,
+				extensions: [],
+				submoduleCfg: [],
+				userRemoteConfigs: [
+					[credentialsId: 'c6aa6881-51ea-448f-8770-6eb57bf0d223',
+					url: 'https://github.com/SnappyDataInc/snappy-aqp.git']
+				]
+			])
+		}
+
+		stage 'checkout spark-jobserver repo'
+		dir('spark-jobserver') {
+			checkout([
+				$class: 'GitSCM',
+				branches: [[name: '*/master']],
+				doGenerateSubmoduleConfigurations: false,
+				extensions: [],
+				submoduleCfg: [],
+				userRemoteConfigs: [
+					[credentialsId: 'c6aa6881-51ea-448f-8770-6eb57bf0d223',
+					url: 'https://github.com/SnappyDataInc/spark-jobserver.git']
+				]
+			])
+		}
+
+		stage 'checkout snappy-store repo'
+		dir('store') {
+			checkout([
+				$class: 'GitSCM',
+				branches: [[name: '*/master']],
+				doGenerateSubmoduleConfigurations: false,
+				extensions: [],
+				submoduleCfg: [],
+				userRemoteConfigs: [
+					[credentialsId: 'c6aa6881-51ea-448f-8770-6eb57bf0d223',
+					url: 'https://github.com/SnappyDataInc/snappy-store.git']
+				]
+			])
+		}
 	}
 }
