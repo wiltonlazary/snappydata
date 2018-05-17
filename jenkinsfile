@@ -15,7 +15,7 @@ node {
 	])
 	
 	stage 'checkout spark repo'
-	dir('cd spark') {
+	dir('spark') {
 		checkout([
 			$class: 'GitSCM',
 			branches: [[name: '*/master']],
@@ -30,7 +30,7 @@ node {
 	}
 	
 	stage 'checkout snappy-connectors'
-	dir('cd snappy-connectors') {
+	dir('snappy-connectors') {
 		checkout([
 			$class: 'GitSCM',
 			branches: [[name: '*/master']],
@@ -45,7 +45,7 @@ node {
 	}
 	
 	stage 'checkout aqp'
-	dir('cd aqp') {
+	dir('aqp') {
 		checkout([
 			$class: 'GitSCM',
 			branches: [[name: '*/master']],
@@ -60,7 +60,7 @@ node {
 	}
 
 	stage 'checkout spark-jobserver repo'
-	dir('cd spark-jobserver') {
+	dir('spark-jobserver') {
 		checkout([
 			$class: 'GitSCM',
 			branches: [[name: '*/master']],
@@ -75,7 +75,7 @@ node {
 	}
 	
 	stage 'checkout snappy-store repo'
-	dir('cd store') {
+	dir('store') {
 		checkout([
 			$class: 'GitSCM',
 			branches: [[name: '*/master']],
