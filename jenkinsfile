@@ -1,7 +1,7 @@
 stage "Initializing/Cloning repositories."
 
 node {
-	stage 'Checkout Snappydata repo'
+	stage 'checkout snappydata'
 	checkout([
 		$class: 'GitSCM',
 		branches: [[name: 'feature/jenkins-ci']],
@@ -15,11 +15,11 @@ node {
 	])
 	
 	parallel {
-		stage 'checkout spark repo'
+		stage 'checkout spark'
 		dir('spark') {
 			checkout([
 				$class: 'GitSCM',
-				branches: [[name: '*/master']],
+				branches: [[name: 'snappy/branch-2.1']],
 				doGenerateSubmoduleConfigurations: false,
 				extensions: [],
 				submoduleCfg: [],
@@ -60,11 +60,11 @@ node {
 			])
 		}
 
-		stage 'checkout spark-jobserver repo'
+		stage 'checkout spark-jobserver'
 		dir('spark-jobserver') {
 			checkout([
 				$class: 'GitSCM',
-				branches: [[name: '*/master']],
+				branches: [[name: 'snappydata']],
 				doGenerateSubmoduleConfigurations: false,
 				extensions: [],
 				submoduleCfg: [],
@@ -75,11 +75,11 @@ node {
 			])
 		}
 
-		stage 'checkout snappy-store repo'
+		stage 'checkout snappy-store'
 		dir('store') {
 			checkout([
 				$class: 'GitSCM',
-				branches: [[name: '*/master']],
+				branches: [[name: 'snappy/master']],
 				doGenerateSubmoduleConfigurations: false,
 				extensions: [],
 				submoduleCfg: [],
