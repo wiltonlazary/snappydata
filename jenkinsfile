@@ -16,7 +16,7 @@ node {
 	}
 	
 	parallel (
-		'checkout spark": {
+		"checkout spark": {
 			dir('spark') {
 				checkout([
 					$class: 'GitSCM',
