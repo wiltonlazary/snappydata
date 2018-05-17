@@ -16,5 +16,6 @@ node {
 			url: 'https://github.com/SnappyDataInc/snappydata.git']
 		]
 	])
-	sh("./jenkin/source-update.sh")
+	sh("pwd")
+	sh("./snappydata-pipeline/jenkin/source-update.sh")
 }
