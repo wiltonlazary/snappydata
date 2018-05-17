@@ -2,11 +2,10 @@ stage "preparation"
 
 node {
 	stage 'Checkout'
+	sh("pwd")
 	checkout([
 		$class: 'GitSCM',
-		branches: [
-			[name: 'feature/jenkins-ci']
-		],
+		branches: [[name: 'feature/jenkins-ci']],
 		doGenerateSubmoduleConfigurations: false,
 		extensions: [],
 		submoduleCfg: [],
@@ -16,6 +15,9 @@ node {
 		]
 	])
 	
+	
+	sh("cd spark")
+	sh("pwd")
 	checkout([
 		$class: 'GitSCM',
 		branches: [[name: '*/master']],
@@ -28,6 +30,10 @@ node {
 		]
 	])
 	
+	sh("cd ..")
+	sh("mkdir snappy-connectors")
+	sh("cd snappy-connectors")
+	sh("pwd")
 	checkout([
 		$class: 'GitSCM',
 		branches: [[name: '*/master']],
@@ -36,10 +42,14 @@ node {
 		submoduleCfg: [],
 		userRemoteConfigs: [
 			[credentialsId: 'c6aa6881-51ea-448f-8770-6eb57bf0d223',
-			url: 'https://github.com/SnappyDataInc/snappy-connector.git']
+			url: 'https://github.com/SnappyDataInc/snappy-connectors.git']
 		]
 	])
 	
+	sh("cd ..")
+	sh("mkdir aqp")
+	sh("cd aqp")
+	sh("pwd")
 	checkout([
 		$class: 'GitSCM',
 		branches: [[name: '*/master']],
@@ -52,6 +62,9 @@ node {
 		]
 	])
 	
+	sh("cd ..")
+	sh("cd spark-jobserver")
+	sh("pwd")
 	checkout([
 		$class: 'GitSCM',
 		branches: [[name: '*/master']],
@@ -64,6 +77,9 @@ node {
 		]
 	])
 	
+	sh("cd ..")
+	sh("cd store")
+	sh("pwd")
 	checkout([
 		$class: 'GitSCM',
 		branches: [[name: '*/master']],
@@ -75,7 +91,6 @@ node {
 			url: 'https://github.com/SnappyDataInc/snappy-store.git']
 		]
 	])
-	
+	sh("cd ..
 	sh("pwd")
-	sh("./jenkin/source-update.sh")
 }
