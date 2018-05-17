@@ -91,6 +91,6 @@ node {
 			url: 'https://github.com/SnappyDataInc/snappy-store.git']
 		]
 	])
-	sh("cd ..
+	sh("cd ..")
 	sh("pwd")
 }
