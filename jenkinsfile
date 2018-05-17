@@ -15,6 +15,67 @@ node {
 			url: 'https://github.com/SnappyDataInc/snappydata.git']
 		]
 	])
+	
+	checkout([
+		$class: 'GitSCM',
+		branches: [[name: '*/master']],
+		doGenerateSubmoduleConfigurations: false,
+		extensions: [],
+		submoduleCfg: [],
+		userRemoteConfigs: [
+			[credentialsId: 'c6aa6881-51ea-448f-8770-6eb57bf0d223',
+			url: 'https://github.com/SnappyDataInc/spark.git']
+		]
+	])
+	
+	checkout([
+		$class: 'GitSCM',
+		branches: [[name: '*/master']],
+		doGenerateSubmoduleConfigurations: false,
+		extensions: [],
+		submoduleCfg: [],
+		userRemoteConfigs: [
+			[credentialsId: 'c6aa6881-51ea-448f-8770-6eb57bf0d223',
+			url: 'https://github.com/SnappyDataInc/snappy-connector.git']
+		]
+	])
+	
+	checkout([
+		$class: 'GitSCM',
+		branches: [[name: '*/master']],
+		doGenerateSubmoduleConfigurations: false,
+		extensions: [],
+		submoduleCfg: [],
+		userRemoteConfigs: [
+			[credentialsId: 'c6aa6881-51ea-448f-8770-6eb57bf0d223',
+			url: 'https://github.com/SnappyDataInc/snappy-aqp.git']
+		]
+	])
+	
+	checkout([
+		$class: 'GitSCM',
+		branches: [[name: '*/master']],
+		doGenerateSubmoduleConfigurations: false,
+		extensions: [],
+		submoduleCfg: [],
+		userRemoteConfigs: [
+			[credentialsId: 'c6aa6881-51ea-448f-8770-6eb57bf0d223',
+			url: 'https://github.com/SnappyDataInc/spark-jobserver.git']
+		]
+	])
+	
+	checkout([
+		$class: 'GitSCM',
+		branches: [[name: '*/master']],
+		doGenerateSubmoduleConfigurations: false,
+		extensions: [],
+		submoduleCfg: [],
+		userRemoteConfigs: [
+			[credentialsId: 'c6aa6881-51ea-448f-8770-6eb57bf0d223',
+			url: 'https://github.com/SnappyDataInc/snappy-store.git']
+		]
+	])
+	
 	sh("pwd")
 	sh("./jenkin/source-update.sh")
 }
