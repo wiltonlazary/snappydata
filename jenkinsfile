@@ -3,5 +3,18 @@ stage "preparation"
 node {
 	stage 'Checkout'
 	git url: "https://github.com/SnappyDataInc/snappydata.git"
-	sh("./jenkin/source-update")
+	checkout([
+		$class: 'GitSCM',
+		branches: [
+			[name: 'feature/jenkins-ci']
+		],
+		doGenerateSubmoduleConfigurations: false,
+		extensions: [],
+		submoduleCfg: [],
+		userRemoteConfigs: [
+			[credentialsId: 'c6aa6881-51ea-448f-8770-6eb57bf0d223',
+			url: 'https://github.com/SnappyDataInc/snappydata.git']
+		]
+	])
+	sh("./jenkin/source-update.sh")
 }
