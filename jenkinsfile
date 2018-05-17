@@ -76,7 +76,6 @@ node {
 	}
 	
 	stage 'checkout snappy-store repo'
-	sh("mkdir store")
 	dir('cd store') {
 		checkout([
 			$class: 'GitSCM',
