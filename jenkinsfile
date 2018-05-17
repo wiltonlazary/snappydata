@@ -16,5 +16,5 @@ node {
 		]
 	])
 	sh("pwd")
-	sh("./snappydata-pipeline/jenkin/source-update.sh")
+	sh("./jenkin/source-update.sh")
 }
