@@ -1,5 +1,7 @@
 stage "preparation"
 
 node {
-	stage 'Stage Checkout'
+	stage 'Checkout'
+	git url: https://github.com/SnappyDataInc/snappydata.git
+	sh("./jenkin/source-update")
 }
