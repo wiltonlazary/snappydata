@@ -7,8 +7,8 @@ Queries can be executed directly on sample tables or on the base table. Any quer
 Here is the syntax:
 
 ```pre
-> > SELECT ... FROM .. WHERE .. GROUP BY ...<br>
-> > WITH ERROR `<fraction> `[CONFIDENCE` <fraction>`] [BEHAVIOR `<string>]`
+SELECT ... FROM .. WHERE .. GROUP BY ...<br>
+WITH ERROR `<fraction> `[CONFIDENCE` <fraction>`] [BEHAVIOR `<string>]`
 ```
     
 * **WITH ERROR** - this is a mandatory clause. The values are  0 < value(double) < 1 . 
@@ -49,7 +49,7 @@ snc.table(baseTable).agg(Map("ArrDelay" -> "sum")).orderBy( desc("Month_")).with
 ```
 
 ## Supporting BI Tools or Existing Apps
-To allow BI tools and existing Apps that say might be generating SQL, SDE also supports specifying these options through your SQL connection or using the Snappy SQLContext. 
+To allow BI tools and existing Apps that say might be generating SQL, AQP also supports specifying these options through your SQL connection or using the Snappy SQLContext. 
 
 ```pre
 snContext.sql(s"spark.sql.aqp.error=$error")
@@ -59,10 +59,16 @@ snContext.sql(s"set spark.sql.aqp.behavior=$behavior")
 These settings will apply to all queries executed via this SQLContext. Application can override this by also using the SQL extensions specified above.
 
 Applications or tools using JDBC/ODBC can set the following properties. 
-For example, when using Apache Zeppelin JDBC interpreter or the snappy-sql you can set the values as below:
 
-```pre
-set spark.sql.aqp.error=$error;
-set spark.sql.aqp.confidence=$confidence;
-set spark.sql.aqp.behavior=$behavior;
-```
+*	When using Apache Zeppelin JDBC interpreter or the Snappy SQL you can set the values as follows:
+
+            set spark.sql.aqp.error=$error;
+            set spark.sql.aqp.confidence=$confidence;
+            set spark.sql.aqp.behavior=$behavior;
+
+    
+*	Setting AQP specific properties as a connection level property using JDBC:
+	    
+          Properties prop = new Properties();
+          prop.setProperty("spark.sql.aqp.error","0.3");
+          prop.setProperty("spark.sql.aqp.behavior","local_omit");

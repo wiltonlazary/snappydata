@@ -70,7 +70,7 @@ The following command submits [CreateAndLoadAirlineDataJob](https://github.com/S
 
 !!! Note
 	When submitting concurrent jobs user must ensure that the `--app-name` parameter is different for each concurrent job. If two applications with the same name are submitted concurrently, the job fails and an error is reported, as the job server maintains a map of the application names and jar files used for that application.
-    
+
 The program must be compiled and bundled as a jar file and submitted to jobs server as shown below:
 
 ```pre
@@ -79,7 +79,6 @@ $ ./bin/snappy-job.sh submit  \
     --app-name airlineApp \
     --class  io.snappydata.examples.CreateAndLoadAirlineDataJob \
     --app-jar $SNAPPY_HOME/examples/jars/quickstart.jar
-    --packages com.datastax.spark:spark-cassandra-connector_2.11:2.0.7
 ```
 
 The utility `snappy-job.sh` submits the job and returns a JSON that has a Job Id of this job.
@@ -140,7 +139,7 @@ For writing jobs users need to include [Maven/SBT dependencies for the latest re
 For example, gradle can be configured as:
 
 ```pre
-compile('io.snappydata:snappydata-cluster_2.11:1.0.2.1') {
+compile('io.snappydata:snappydata-cluster_2.11:1.2.0') {
         exclude(group: 'io.snappydata', module: 'snappy-spark-unsafe_2.11')
         exclude(group: 'io.snappydata', module: 'snappy-spark-core_2.11')
         exclude(group: 'io.snappydata',module: 'snappy-spark-yarn_2.11')
@@ -214,6 +213,10 @@ $ ./bin/snappy-job.sh listcontexts  \
 $ ./bin/snappy-job.sh stopcontext snappyStreamingContext1463987084945028747  \
     --lead localhost:8090
 ```
+
+You can import the examples into a separate independent gradle project as is and submit the jobs to the cluster.
+Refer to the instructions [here](https://github.com/SnappyDataInc/snappydata/blob/master/examples/README.md). The link also contains instructions for importing and running examples from an IDE such as Intellij IDEA.
+
 
 **Related Topic**:
 

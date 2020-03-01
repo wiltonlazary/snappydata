@@ -1,7 +1,7 @@
 package io.snappydata.hydra.cdcConnector;
 
 /*
- * Copyright (c) 2018 SnappyData, Inc. All rights reserved.
+ * Copyright (c) 2017-2019 TIBCO Software Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you
  * may not use this file except in compliance with the License. You
@@ -57,7 +57,7 @@ public class CDCPerfSparkJob {
       if (sqlServer.equals("sqlServer1")) {
         url = "jdbc:sqlserver://sqlent.westus.cloudapp.azure.com:1433";
       } else
-        url = "jdbc:sqlserver://sqlent2.eastus.cloudapp.azure.com:1434";
+        url = "jdbc:sqlserver://sqlserver2-et16.copfedn1qbcz.us-west-2.rds.amazonaws.com:1435";
       String username = "sqldb";
       String password = "snappydata#msft1";
       Properties props = new Properties();
@@ -223,8 +223,8 @@ public class CDCPerfSparkJob {
         ps.setInt(2, CLIENT_ID);
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
-          String CITY = rs.getString("CTY");
-          String COUNTRY = rs.getString("CNTY");
+          String CITY = rs.getString("cty");
+          String COUNTRY = rs.getString("cnty");
         }
       }
       endTime = System.currentTimeMillis();

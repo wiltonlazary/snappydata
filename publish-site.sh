@@ -31,7 +31,7 @@ do
 done
 
 ## Remove the lines till toc and then copy that as index.md
-index_start_line=`grep -n '## Introduction' ./docs/GettingStarted.md | cut -d':' -f1`
+index_start_line=`grep -n '# Introduction' ./docs/GettingStarted.md | cut -d':' -f1`
 echo LINE START $index_start_line
 
 if [ ! -z ${index_start_line} ]; then
@@ -56,6 +56,8 @@ mkdocs build --clean
 # Copy the generated scala docs inside the site folder. 
 mkdir -p site/apidocs
 cp -R build-artifacts/scala-2.11/docs/* site/apidocs/
+mkdir -p site/sql_functions
+cp -R spark/sql/site/* site/sql_functions/
 
 #mkdocs gh-deploy
 
